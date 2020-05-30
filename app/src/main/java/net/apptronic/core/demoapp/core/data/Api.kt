@@ -8,9 +8,9 @@ import net.apptronic.core.component.context.Context
 import net.apptronic.core.component.di.Descriptor
 import net.apptronic.core.component.extensions.BaseComponent
 import net.apptronic.core.component.inject
-import net.apptronic.core.demoapp.core.demo.CorrectLoginDescriptor
-import net.apptronic.core.demoapp.core.demo.CorrectPasswordDescriptor
-import net.apptronic.core.demoapp.core.demo.DemoLoginDelayMilliseconds
+import net.apptronic.core.demoapp.core.CorrectLoginDescriptor
+import net.apptronic.core.demoapp.core.CorrectPasswordDescriptor
+import net.apptronic.core.demoapp.core.DemoLoginDelayMilliseconds
 
 interface Api {
 
@@ -22,7 +22,7 @@ interface Api {
 
 }
 
-class DemoApi(context: Context) : BaseComponent(context), Api {
+class DemoApiComponent(context: Context) : BaseComponent(context), Api {
 
     /**
      * Using [Descriptor] for specifying type of injected value allows to specify unique injection

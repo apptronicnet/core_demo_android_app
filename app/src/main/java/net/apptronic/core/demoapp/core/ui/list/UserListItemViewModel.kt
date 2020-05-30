@@ -6,8 +6,19 @@ import net.apptronic.core.demoapp.core.data.User
 import net.apptronic.core.mvvm.viewmodel.EmptyViewModelContext
 import net.apptronic.core.mvvm.viewmodel.ViewModel
 import net.apptronic.core.mvvm.viewmodel.extensions.functionOf
+import net.apptronic.core.mvvm.viewmodel.navigation.DynamicListNavigator
 import net.apptronic.core.mvvm.viewmodel.navigation.ViewModelBuilder
 
+/**
+ * To use [ViewModel] in large lists it needed to create implementation of [ViewModelBuilder] which generates
+ * concrete [ViewModel] by [DynamicListNavigator] request from specified type.
+ *
+ * Method [ViewModelBuilder.getId] needed to define when item [User] is complete ly or it's same item with
+ * updated data. If list item of type [User] inside [DynamicListNavigator] will be replaced by item with same id
+ * [DynamicListNavigator] will not destroy old [UserListItemViewModel] and not create new [UserListItemViewModel]
+ * but find existing [UserListItemViewModel] which bound to [User] id and call
+ * [ViewModelBuilder.onUpdateViewModel].
+ */
 object UserListItemViewModelBuilder : ViewModelBuilder<User, Int, UserListItemViewModel> {
 
     override fun getId(item: User): Int = item.id
@@ -22,10 +33,19 @@ object UserListItemViewModelBuilder : ViewModelBuilder<User, Int, UserListItemVi
 
 }
 
+/**
+ * [ViewModel] can be used not only for whole app screen or ot's part, but also as list element.
+ */
 class UserListItemViewModel(parent: Context) : ViewModel(parent, EmptyViewModelContext) {
 
+    /**
+     * Value or type [User] represented by this [UserListItemViewModel]
+     */
     val user = value<User>()
 
+    /**
+     * The displayable text on list item
+     */
     val text = functionOf(user) {
         "User #${it.id} ${it.firstName} ${it.lastName}"
     }

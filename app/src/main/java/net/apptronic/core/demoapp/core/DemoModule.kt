@@ -1,4 +1,4 @@
-package net.apptronic.core.demoapp.core.demo
+package net.apptronic.core.demoapp.core
 
 import net.apptronic.core.component.di.Descriptor
 import net.apptronic.core.component.di.createDescriptor

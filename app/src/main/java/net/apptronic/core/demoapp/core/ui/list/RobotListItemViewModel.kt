@@ -6,8 +6,19 @@ import net.apptronic.core.demoapp.core.data.Robot
 import net.apptronic.core.mvvm.viewmodel.EmptyViewModelContext
 import net.apptronic.core.mvvm.viewmodel.ViewModel
 import net.apptronic.core.mvvm.viewmodel.extensions.functionOf
+import net.apptronic.core.mvvm.viewmodel.navigation.DynamicListNavigator
 import net.apptronic.core.mvvm.viewmodel.navigation.ViewModelBuilder
 
+/**
+ * To use [ViewModel] in large lists it needed to create implementation of [ViewModelBuilder] which generates
+ * concrete [ViewModel] by [DynamicListNavigator] request from specified type.
+ *
+ * Method [ViewModelBuilder.getId] needed to define when item [Robot] is complete ly or it's same item with
+ * updated data. If list item of type [Robot] inside [DynamicListNavigator] will be replaced by item with same id
+ * [DynamicListNavigator] will not destroy old [RobotListItemViewModel] and not create new [RobotListItemViewModel]
+ * but find existing [RobotListItemViewModel] which bound to [Robot] id and call
+ * [ViewModelBuilder.onUpdateViewModel].
+ */
 object RobotListItemViewModelBuilder : ViewModelBuilder<Robot, Int, RobotListItemViewModel> {
 
     override fun getId(item: Robot): Int = item.id
@@ -22,14 +33,26 @@ object RobotListItemViewModelBuilder : ViewModelBuilder<Robot, Int, RobotListIte
 
 }
 
+/**
+ * [ViewModel] can be used not only for whole app screen or ot's part, but also as list element.
+ */
 class RobotListItemViewModel(parent: Context) : ViewModel(parent, EmptyViewModelContext) {
 
+    /**
+     * Value or type [Robot] represented by this [RobotListItemViewModel]
+     */
     val robot = value<Robot>()
 
+    /**
+     * The displayable main text on list item
+     */
     val text = functionOf(robot) {
         "Robot #${it.id} ${it.name} "
     }
 
+    /**
+     * The displayable secondary text on list item
+     */
     val manufacturer = functionOf(robot) {
         it.manufacturer
     }

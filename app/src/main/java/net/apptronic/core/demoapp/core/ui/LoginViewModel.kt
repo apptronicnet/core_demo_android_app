@@ -8,9 +8,9 @@ import net.apptronic.core.component.genericEvent
 import net.apptronic.core.component.inject
 import net.apptronic.core.component.property
 import net.apptronic.core.component.value
+import net.apptronic.core.demoapp.core.CorrectLoginDescriptor
+import net.apptronic.core.demoapp.core.CorrectPasswordDescriptor
 import net.apptronic.core.demoapp.core.data.Api
-import net.apptronic.core.demoapp.core.demo.CorrectLoginDescriptor
-import net.apptronic.core.demoapp.core.demo.CorrectPasswordDescriptor
 import net.apptronic.core.mvvm.common.textInput
 import net.apptronic.core.mvvm.viewmodel.EmptyViewModelContext
 import net.apptronic.core.mvvm.viewmodel.ViewModel

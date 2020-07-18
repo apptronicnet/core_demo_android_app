@@ -5,7 +5,7 @@ import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
 import net.apptronic.core.component.context.Context
-import net.apptronic.core.component.di.Descriptor
+import net.apptronic.core.component.di.DependencyDescriptor
 import net.apptronic.core.component.extensions.BaseComponent
 import net.apptronic.core.component.inject
 import net.apptronic.core.demoapp.core.CorrectLoginDescriptor
@@ -25,7 +25,7 @@ interface Api {
 class DemoApiComponent(context: Context) : BaseComponent(context), Api {
 
     /**
-     * Using [Descriptor] for specifying type of injected value allows to specify unique injection
+     * Using [DependencyDescriptor] for specifying type of injected value allows to specify unique injection
      * definition with pre-defined type
      */
     private val correctLogin = inject(CorrectLoginDescriptor)

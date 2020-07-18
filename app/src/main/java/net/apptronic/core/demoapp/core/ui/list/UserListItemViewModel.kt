@@ -1,10 +1,12 @@
 package net.apptronic.core.demoapp.core.ui.list
 
 import net.apptronic.core.component.context.Context
+import net.apptronic.core.component.context.Contextual
+import net.apptronic.core.component.context.viewModelContext
 import net.apptronic.core.component.value
 import net.apptronic.core.demoapp.core.data.User
-import net.apptronic.core.mvvm.viewmodel.EmptyViewModelContext
 import net.apptronic.core.mvvm.viewmodel.ViewModel
+import net.apptronic.core.mvvm.viewmodel.ViewModelContext
 import net.apptronic.core.mvvm.viewmodel.extensions.functionOf
 import net.apptronic.core.mvvm.viewmodel.navigation.DynamicListNavigator
 import net.apptronic.core.mvvm.viewmodel.navigation.ViewModelBuilder
@@ -24,7 +26,7 @@ object UserListItemViewModelBuilder : ViewModelBuilder<User, Int, UserListItemVi
     override fun getId(item: User): Int = item.id
 
     override fun onCreateViewModel(parent: Context, item: User): UserListItemViewModel {
-        return UserListItemViewModel(parent).also { onUpdateViewModel(it, item) }
+        return parent.userListItemViewModel().also { onUpdateViewModel(it, item) }
     }
 
     override fun onUpdateViewModel(viewModel: UserListItemViewModel, newItem: User) {
@@ -33,10 +35,12 @@ object UserListItemViewModelBuilder : ViewModelBuilder<User, Int, UserListItemVi
 
 }
 
+fun Contextual.userListItemViewModel() = UserListItemViewModel(viewModelContext())
+
 /**
  * [ViewModel] can be used not only for whole app screen or ot's part, but also as list element.
  */
-class UserListItemViewModel(parent: Context) : ViewModel(parent, EmptyViewModelContext) {
+class UserListItemViewModel(context: ViewModelContext) : ViewModel(context) {
 
     /**
      * Value or type [User] represented by this [UserListItemViewModel]

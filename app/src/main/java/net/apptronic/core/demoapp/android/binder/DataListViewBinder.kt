@@ -7,6 +7,7 @@ import net.apptronic.core.android.viewmodel.ViewBinder
 import net.apptronic.core.android.viewmodel.bindings.bindVisibleGone
 import net.apptronic.core.android.viewmodel.bindings.navigation.bindListNavigator
 import net.apptronic.core.demoapp.R
+import net.apptronic.core.demoapp.android.ui.SpacingDecoration
 import net.apptronic.core.demoapp.core.ui.DataListViewModel
 
 class DataListViewBinder : ViewBinder<DataListViewModel>() {
@@ -16,7 +17,9 @@ class DataListViewBinder : ViewBinder<DataListViewModel>() {
     override fun onBindView(view: View, viewModel: DataListViewModel) {
         with(view) {
             bindVisibleGone(progressBar, viewModel.isInProgress)
-            recyclerView.layoutManager = LinearLayoutManager(context)
+            val layoutManager = LinearLayoutManager(context)
+            recyclerView.layoutManager = layoutManager
+            recyclerView.addItemDecoration(SpacingDecoration(resources.getDimensionPixelSize(R.dimen.list_spacing)))
             bindListNavigator(recyclerView, viewModel.listNavigator)
         }
     }

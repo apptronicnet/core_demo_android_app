@@ -1,19 +1,19 @@
 package net.apptronic.core.demoapp.core.ui
 
-import net.apptronic.core.component.context.Context
-import net.apptronic.core.component.di.declareModule
+import net.apptronic.core.component.Component
+import net.apptronic.core.component.context.Contextual
+import net.apptronic.core.component.context.viewModelContext
 import net.apptronic.core.mvvm.viewmodel.ViewModel
+import net.apptronic.core.mvvm.viewmodel.ViewModelContext
 import net.apptronic.core.mvvm.viewmodel.adapter.BasicTransition
-import net.apptronic.core.mvvm.viewmodel.defineViewModelContext
 
-val AppViewModelContext = defineViewModelContext {
-    dependencyDispatcher.addModule(AppUiModule)
-}
+/**
+ * Default builder for [AppViewModel] which can be called from any [Contextual] - other [ViewModel],
+ * [Component] etc.
+ */
+fun Contextual.appViewModel() = AppViewModel(viewModelContext())
 
-private val AppUiModule = declareModule {
-}
-
-class AppViewModel(parent: Context) : ViewModel(parent, AppViewModelContext) {
+class AppViewModel(context: ViewModelContext) : ViewModel(context) {
 
     init {
         context.dependencyDispatcher.addInstance<Router>(AppRouter(this))
@@ -22,19 +22,19 @@ class AppViewModel(parent: Context) : ViewModel(parent, AppViewModelContext) {
     val navigator = stackNavigator()
 
     init {
-        navigator.add(WelcomeViewModel(parent = context))
+        navigator.add(welcomeViewModel())
     }
 
     fun openLogin() {
-        navigator.add(LoginViewModel(parent = context), BasicTransition.Forward)
+        navigator.add(loginViewModel(), BasicTransition.Forward)
     }
 
     fun openDataList() {
-        navigator.add(DataListViewModel(parent = context), BasicTransition.Forward)
+        navigator.add(dataListViewModel(), BasicTransition.Forward)
     }
 
     fun onBackPressed(): Boolean {
-        return navigator.popBackStack(BasicTransition.Back)
+        return navigator.popBackStack(BasicTransition.Backward)
     }
 
 }

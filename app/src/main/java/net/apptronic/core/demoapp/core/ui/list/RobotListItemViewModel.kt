@@ -1,10 +1,12 @@
 package net.apptronic.core.demoapp.core.ui.list
 
 import net.apptronic.core.component.context.Context
+import net.apptronic.core.component.context.Contextual
+import net.apptronic.core.component.context.viewModelContext
 import net.apptronic.core.component.value
 import net.apptronic.core.demoapp.core.data.Robot
-import net.apptronic.core.mvvm.viewmodel.EmptyViewModelContext
 import net.apptronic.core.mvvm.viewmodel.ViewModel
+import net.apptronic.core.mvvm.viewmodel.ViewModelContext
 import net.apptronic.core.mvvm.viewmodel.extensions.functionOf
 import net.apptronic.core.mvvm.viewmodel.navigation.DynamicListNavigator
 import net.apptronic.core.mvvm.viewmodel.navigation.ViewModelBuilder
@@ -24,7 +26,7 @@ object RobotListItemViewModelBuilder : ViewModelBuilder<Robot, Int, RobotListIte
     override fun getId(item: Robot): Int = item.id
 
     override fun onCreateViewModel(parent: Context, item: Robot): RobotListItemViewModel {
-        return RobotListItemViewModel(parent).also { onUpdateViewModel(it, item) }
+        return parent.robotListItemViewModel().also { onUpdateViewModel(it, item) }
     }
 
     override fun onUpdateViewModel(viewModel: RobotListItemViewModel, newItem: Robot) {
@@ -33,10 +35,12 @@ object RobotListItemViewModelBuilder : ViewModelBuilder<Robot, Int, RobotListIte
 
 }
 
+fun Contextual.robotListItemViewModel() = RobotListItemViewModel(viewModelContext())
+
 /**
  * [ViewModel] can be used not only for whole app screen or ot's part, but also as list element.
  */
-class RobotListItemViewModel(parent: Context) : ViewModel(parent, EmptyViewModelContext) {
+class RobotListItemViewModel(context: ViewModelContext) : ViewModel(context) {
 
     /**
      * Value or type [Robot] represented by this [RobotListItemViewModel]

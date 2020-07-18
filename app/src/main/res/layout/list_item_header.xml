@@ -3,8 +3,7 @@
     android:id="@+id/txtUser"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:fontFamily="sans-serif-light"
-    android:padding="12dp"
-    android:text="Data list"
-    android:textColor="#888"
+    android:fontFamily="sans-serif-medium"
+    android:text="DATA LIST"
+    android:textColor="#666"
     android:textSize="24sp" />

@@ -1,19 +1,23 @@
 package net.apptronic.core.demoapp.core.ui
 
 import net.apptronic.core.base.collections.wrapLists
-import net.apptronic.core.component.context.Context
+import net.apptronic.core.component.context.Contextual
+import net.apptronic.core.component.context.viewModelContext
 import net.apptronic.core.component.coroutines.coroutineLaunchers
 import net.apptronic.core.component.inject
 import net.apptronic.core.component.value
 import net.apptronic.core.demoapp.core.data.DataRepository
 import net.apptronic.core.demoapp.core.ui.list.HeaderListItem
 import net.apptronic.core.demoapp.core.ui.list.ViewModelFactory
-import net.apptronic.core.mvvm.viewmodel.EmptyViewModelContext
 import net.apptronic.core.mvvm.viewmodel.ViewModel
+import net.apptronic.core.mvvm.viewmodel.ViewModelContext
 import net.apptronic.core.mvvm.viewmodel.navigation.DynamicListNavigator
+import net.apptronic.core.mvvm.viewmodel.navigation.HasBackNavigation
 import net.apptronic.core.mvvm.viewmodel.navigation.ListNavigator
 
-class DataListViewModel(parent: Context) : ViewModel(parent, EmptyViewModelContext) {
+fun Contextual.dataListViewModel() = DataListViewModel(viewModelContext())
+
+class DataListViewModel(context: ViewModelContext) : ViewModel(context), HasBackNavigation {
 
     private val dataRepository = inject<DataRepository>()
 

@@ -1,13 +1,14 @@
 package net.apptronic.core.demoapp.core.ui
 
-import net.apptronic.core.component.context.Context
+import net.apptronic.core.component.context.Contextual
+import net.apptronic.core.component.context.viewModelContext
 import net.apptronic.core.component.inject
-import net.apptronic.core.mvvm.viewmodel.EmptyViewModelContext
 import net.apptronic.core.mvvm.viewmodel.ViewModel
+import net.apptronic.core.mvvm.viewmodel.ViewModelContext
 
-private val WelcomeContext = EmptyViewModelContext
+fun Contextual.welcomeViewModel() = WelcomeViewModel(viewModelContext())
 
-class WelcomeViewModel(parent: Context) : ViewModel(parent, WelcomeContext) {
+class WelcomeViewModel(context: ViewModelContext) : ViewModel(context) {
 
     private val router = inject<Router>()
 

@@ -1,6 +1,7 @@
 package net.apptronic.core.demoapp.core.ui
 
-import net.apptronic.core.component.context.Context
+import net.apptronic.core.component.context.Contextual
+import net.apptronic.core.component.context.viewModelContext
 import net.apptronic.core.component.coroutines.coroutineLaunchers
 import net.apptronic.core.component.entity.functions.and
 import net.apptronic.core.component.entity.functions.isNotEmpty
@@ -12,10 +13,13 @@ import net.apptronic.core.demoapp.core.CorrectLoginDescriptor
 import net.apptronic.core.demoapp.core.CorrectPasswordDescriptor
 import net.apptronic.core.demoapp.core.data.Api
 import net.apptronic.core.mvvm.common.textInput
-import net.apptronic.core.mvvm.viewmodel.EmptyViewModelContext
 import net.apptronic.core.mvvm.viewmodel.ViewModel
+import net.apptronic.core.mvvm.viewmodel.ViewModelContext
+import net.apptronic.core.mvvm.viewmodel.navigation.HasBackNavigation
 
-class LoginViewModel(parent: Context) : ViewModel(parent, EmptyViewModelContext) {
+fun Contextual.loginViewModel() = LoginViewModel(viewModelContext())
+
+class LoginViewModel(context: ViewModelContext) : ViewModel(context), HasBackNavigation {
 
     private val api = inject<Api>()
     private val router = inject<Router>()
@@ -48,9 +52,7 @@ class LoginViewModel(parent: Context) : ViewModel(parent, EmptyViewModelContext)
                 router.openDataList()
             } else {
                 dialogNavigator.add(
-                    IncorrectCredentialsDialogViewModel(
-                        context, correctDemoLogin, correctDemoPassword
-                    )
+                    incorrectCredentialsDialogViewModel(correctDemoLogin, correctDemoPassword)
                 )
             }
             isInProgress.set(false)

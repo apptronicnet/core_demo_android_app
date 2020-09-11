@@ -16,12 +16,17 @@ class AndroidApp : Application() {
 
     override fun onCreate() {
         super.onCreate()
+        // install plugin that enables easy integration for Android platform
         AppContext.installAndroidApplicationPlugin(this) {
+            // injects [ViewBinderFactory] automatically to all navigator bindings
             binderFactory(AppBinderFactory)
+            // bind [Activity] class with it's [ViewModel]
             bindActivity(MainActivity::class, AppViewModel::class) {
+                // action which will executed when system back button pressed
                 it.onBackPressed()
             }
         }
+        // create instance of app core component to make application work
         appComponent = AppComponent()
     }
 

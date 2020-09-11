@@ -1,9 +1,10 @@
 package net.apptronic.core.demoapp.core.ui
 
+import kotlinx.coroutines.launch
 import net.apptronic.core.base.collections.wrapLists
 import net.apptronic.core.component.context.Contextual
 import net.apptronic.core.component.context.viewModelContext
-import net.apptronic.core.component.coroutines.coroutineLaunchers
+import net.apptronic.core.component.coroutines.contextCoroutineScope
 import net.apptronic.core.component.inject
 import net.apptronic.core.component.value
 import net.apptronic.core.demoapp.core.data.DataRepository
@@ -14,6 +15,7 @@ import net.apptronic.core.mvvm.viewmodel.ViewModelContext
 import net.apptronic.core.mvvm.viewmodel.navigation.DynamicListNavigator
 import net.apptronic.core.mvvm.viewmodel.navigation.HasBackNavigation
 import net.apptronic.core.mvvm.viewmodel.navigation.ListNavigator
+import net.apptronic.core.mvvm.viewmodel.navigation.listDynamicNavigator
 
 fun Contextual.dataListViewModel() = DataListViewModel(viewModelContext())
 
@@ -40,7 +42,7 @@ class DataListViewModel(context: ViewModelContext) : ViewModel(context), HasBack
     val isInProgress = value(false)
 
     init {
-        coroutineLaunchers().local.launch {
+        contextCoroutineScope.launch {
             isInProgress.set(true)
             val data = dataRepository.getData()
 

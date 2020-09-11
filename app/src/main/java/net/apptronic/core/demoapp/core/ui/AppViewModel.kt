@@ -6,6 +6,7 @@ import net.apptronic.core.component.context.viewModelContext
 import net.apptronic.core.mvvm.viewmodel.ViewModel
 import net.apptronic.core.mvvm.viewmodel.ViewModelContext
 import net.apptronic.core.mvvm.viewmodel.adapter.BasicTransition
+import net.apptronic.core.mvvm.viewmodel.navigation.stackNavigator
 
 /**
  * Default builder for [AppViewModel] which can be called from any [Contextual] - other [ViewModel],

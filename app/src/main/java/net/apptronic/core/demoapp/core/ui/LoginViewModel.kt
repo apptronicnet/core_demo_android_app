@@ -1,8 +1,10 @@
 package net.apptronic.core.demoapp.core.ui
 
+import kotlinx.coroutines.launch
 import net.apptronic.core.component.context.Contextual
+import net.apptronic.core.component.context.doAsync
 import net.apptronic.core.component.context.viewModelContext
-import net.apptronic.core.component.coroutines.coroutineLaunchers
+import net.apptronic.core.component.coroutines.contextCoroutineScope
 import net.apptronic.core.component.entity.functions.and
 import net.apptronic.core.component.entity.functions.isNotEmpty
 import net.apptronic.core.component.genericEvent
@@ -16,6 +18,7 @@ import net.apptronic.core.mvvm.common.textInput
 import net.apptronic.core.mvvm.viewmodel.ViewModel
 import net.apptronic.core.mvvm.viewmodel.ViewModelContext
 import net.apptronic.core.mvvm.viewmodel.navigation.HasBackNavigation
+import net.apptronic.core.mvvm.viewmodel.navigation.stackNavigator
 
 fun Contextual.loginViewModel() = LoginViewModel(viewModelContext())
 
@@ -23,8 +26,6 @@ class LoginViewModel(context: ViewModelContext) : ViewModel(context), HasBackNav
 
     private val api = inject<Api>()
     private val router = inject<Router>()
-
-    private val loginCoroutineLauncher = coroutineLaunchers().local
 
     private val correctDemoLogin = inject(CorrectLoginDescriptor)
     private val correctDemoPassword = inject(CorrectPasswordDescriptor)
@@ -45,11 +46,13 @@ class LoginViewModel(context: ViewModelContext) : ViewModel(context), HasBackNav
 
     fun onLoginClick() {
         requestHideSoftKeyboardEvent.sendEvent()
-        loginCoroutineLauncher.launch {
+        contextCoroutineScope.launch {
             isInProgress.set(true)
             val isSuccess = api.login(login.getText(), password.getText())
             if (isSuccess) {
-                router.openDataList()
+                doAsync {
+                    router.openDataList()
+                }
             } else {
                 dialogNavigator.add(
                     incorrectCredentialsDialogViewModel(correctDemoLogin, correctDemoPassword)

@@ -11,6 +11,7 @@ class HeaderListItemViewBinder : ViewBinder<HeaderListItemViewModel>() {
 
     override fun onBindView(view: View, viewModel: HeaderListItemViewModel) {
         // do nothing
+        // this view contains no logic, only display
     }
 
 }

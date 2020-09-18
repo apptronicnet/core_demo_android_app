@@ -1,10 +1,12 @@
 package net.apptronic.core.demoapp.core.ui.list
 
+import net.apptronic.core.commons.navigation.injectNavigationRouter
 import net.apptronic.core.component.context.Context
 import net.apptronic.core.component.context.Contextual
 import net.apptronic.core.component.context.viewModelContext
 import net.apptronic.core.component.value
 import net.apptronic.core.demoapp.core.data.User
+import net.apptronic.core.demoapp.core.ui.OpenUserDetails
 import net.apptronic.core.mvvm.viewmodel.ViewModel
 import net.apptronic.core.mvvm.viewmodel.ViewModelContext
 import net.apptronic.core.mvvm.viewmodel.extensions.functionOf
@@ -42,6 +44,8 @@ fun Contextual.userListItemViewModel() = UserListItemViewModel(viewModelContext(
  */
 class UserListItemViewModel(context: ViewModelContext) : ViewModel(context) {
 
+    private val router = injectNavigationRouter()
+
     /**
      * Value or type [User] represented by this [UserListItemViewModel]
      */
@@ -52,6 +56,10 @@ class UserListItemViewModel(context: ViewModelContext) : ViewModel(context) {
      */
     val text = functionOf(user) {
         "User #${it.id} ${it.firstName} ${it.lastName}"
+    }
+
+    fun onClick() {
+        router.sendCommands(OpenUserDetails(user.get()))
     }
 
 }

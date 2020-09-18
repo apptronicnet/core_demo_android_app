@@ -19,4 +19,6 @@ val AppBinderFactory = viewBinderFactory {
     add(::HeaderListItemViewBinder)
     add(::RobotListItemViewBinder)
     add(::UserListItemViewBinder)
+    add(::RobotDetailsViewBinder)
+    add(::UserDetailsViewBinder)
 }

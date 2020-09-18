@@ -1,8 +1,8 @@
 package net.apptronic.core.demoapp.core.ui
 
 import kotlinx.coroutines.launch
+import net.apptronic.core.commons.navigation.injectNavigationRouter
 import net.apptronic.core.component.context.Contextual
-import net.apptronic.core.component.context.doAsync
 import net.apptronic.core.component.context.viewModelContext
 import net.apptronic.core.component.coroutines.contextCoroutineScope
 import net.apptronic.core.component.entity.functions.and
@@ -17,15 +17,14 @@ import net.apptronic.core.demoapp.core.data.Api
 import net.apptronic.core.mvvm.common.textInput
 import net.apptronic.core.mvvm.viewmodel.ViewModel
 import net.apptronic.core.mvvm.viewmodel.ViewModelContext
-import net.apptronic.core.mvvm.viewmodel.navigation.HasBackNavigation
 import net.apptronic.core.mvvm.viewmodel.navigation.stackNavigator
 
 fun Contextual.loginViewModel() = LoginViewModel(viewModelContext())
 
-class LoginViewModel(context: ViewModelContext) : ViewModel(context), HasBackNavigation {
+class LoginViewModel(context: ViewModelContext) : ViewModel(context) {
 
+    private val router = injectNavigationRouter()
     private val api = inject<Api>()
-    private val router = inject<Router>()
 
     private val correctDemoLogin = inject(CorrectLoginDescriptor)
     private val correctDemoPassword = inject(CorrectPasswordDescriptor)
@@ -50,9 +49,7 @@ class LoginViewModel(context: ViewModelContext) : ViewModel(context), HasBackNav
             isInProgress.set(true)
             val isSuccess = api.login(login.getText(), password.getText())
             if (isSuccess) {
-                doAsync {
-                    router.openDataList()
-                }
+                router.sendCommandsAsync(OpenDataList())
             } else {
                 dialogNavigator.add(
                     incorrectCredentialsDialogViewModel(correctDemoLogin, correctDemoPassword)

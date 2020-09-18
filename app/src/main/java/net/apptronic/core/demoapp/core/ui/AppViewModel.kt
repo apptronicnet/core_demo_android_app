@@ -1,5 +1,8 @@
 package net.apptronic.core.demoapp.core.ui
 
+import net.apptronic.core.commons.navigation.DefaultNavigationHandler
+import net.apptronic.core.commons.navigation.hostNavigationRouter
+import net.apptronic.core.commons.navigation.registerNavigationHandler
 import net.apptronic.core.component.Component
 import net.apptronic.core.component.context.Contextual
 import net.apptronic.core.component.context.viewModelContext
@@ -14,45 +17,61 @@ import net.apptronic.core.mvvm.viewmodel.navigation.stackNavigator
  */
 fun Contextual.appViewModel() = AppViewModel(viewModelContext())
 
-class AppViewModel(context: ViewModelContext) : ViewModel(context) {
+class AppViewModel(context: ViewModelContext) : ViewModel(context), DefaultNavigationHandler {
 
     init {
-        context.dependencyDispatcher.addInstance<Router>(AppRouter(this))
+        hostNavigationRouter()
     }
 
     val navigator = stackNavigator()
+    val overlayNavigator = stackNavigator()
 
     init {
         navigator.add(welcomeViewModel())
+        registerNavigationHandler(this)
     }
 
-    fun openLogin() {
-        navigator.add(loginViewModel(), BasicTransition.Forward)
+    override fun onNavigationCommand(command: Any): Boolean {
+        return when (command) {
+            is OpenLogin -> {
+                navigator.add(loginViewModel(), BasicTransition.Forward)
+                true
+            }
+            is OpenDataList -> {
+                navigator.add(dataListViewModel(), BasicTransition.Forward)
+                true
+            }
+            is CloseApp -> {
+                closeSelf()
+                true
+            }
+            is OpenUserDetails -> {
+                overlayNavigator.add(
+                    userDetailsViewModel(command.data),
+                    Transitions.ShowHideBottomSheet
+                )
+                true
+            }
+            is OpenRobotDetails -> {
+                overlayNavigator.add(
+                    robotDetailsViewModel(command.data),
+                    Transitions.ShowHideBottomSheet
+                )
+                true
+            }
+            else -> false
+        }
     }
 
-    fun openDataList() {
-        navigator.add(dataListViewModel(), BasicTransition.Forward)
+    fun onTapOverlay() {
+        overlayNavigator.removeLast(Transitions.ShowHideBottomSheet)
     }
 
     fun onBackPressed(): Boolean {
+        if (overlayNavigator.removeLast(Transitions.ShowHideBottomSheet)) {
+            return true
+        }
         return navigator.popBackStack(BasicTransition.Backward)
     }
 
 }
-
-private class AppRouter(private val target: AppViewModel) : Router {
-
-    override fun closeApp() {
-        target.closeSelf()
-    }
-
-    override fun openLogin() {
-        target.openLogin()
-    }
-
-    override fun openDataList() {
-        target.openDataList()
-    }
-
-}
-

@@ -11,6 +11,7 @@ import net.apptronic.core.component.inject
 import net.apptronic.core.demoapp.core.CorrectLoginDescriptor
 import net.apptronic.core.demoapp.core.CorrectPasswordDescriptor
 import net.apptronic.core.demoapp.core.DemoLoginDelayMilliseconds
+import kotlin.random.Random
 
 interface Api {
 
@@ -55,7 +56,9 @@ class DemoApiComponent(context: Context) : BaseComponent(context), Api {
                     User(
                         id = it,
                         firstName = firstNames.random(),
-                        lastName = lastNames.random()
+                        lastName = lastNames.random(),
+                        age = Random.nextInt(12, 80),
+                        height = Random.nextInt(140, 190)
                     )
                 }
             }
@@ -81,7 +84,9 @@ class DemoApiComponent(context: Context) : BaseComponent(context), Api {
                     Robot(
                         id = it,
                         name = robotNamePrefixes.random() + robotNameSuffixes.random(),
-                        manufacturer = robotManufacturers.random()
+                        manufacturer = robotManufacturers.random(),
+                        weight = Random.nextInt(2, 200),
+                        color = RobotColor.values().random()
                     )
                 }
             }

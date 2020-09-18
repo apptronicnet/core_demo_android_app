@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/txtUser"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:layout_gravity="bottom"
+    android:layout_margin="16dp"
+    android:background="#fff"
+    android:clickable="true"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:padding="16dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginBottom="12dp"
+        android:fontFamily="sans-serif-light"
+        android:gravity="center"
+        android:text="Robot details"
+        android:textAllCaps="true"
+        android:textColor="#787878"
+        android:textSize="28sp" />
+
+    <TableRow>
+
+        <TextView
+            android:text="Name:"
+            android:textColor="#787878"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/txtDetailsName"
+            android:layout_marginStart="10dp"
+            android:fontFamily="sans-serif-medium"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            tools:text="Bot" />
+
+    </TableRow>
+
+    <TableRow>
+
+        <TextView
+            android:text="Manufacturer:"
+            android:textColor="#787878"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/txtDetailsManufacturer"
+            android:layout_marginStart="10dp"
+            android:fontFamily="sans-serif-medium"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            tools:text="Google" />
+
+    </TableRow>
+
+    <TableRow>
+
+        <TextView
+            android:text="Weight:"
+            android:textColor="#787878"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/txtDetailsWeight"
+            android:layout_marginStart="10dp"
+            android:fontFamily="sans-serif-medium"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            tools:text="110 kg" />
+
+    </TableRow>
+
+    <TableRow>
+
+        <TextView
+            android:text="Color:"
+            android:textColor="#787878"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/txtDetailsColor"
+            android:layout_marginStart="10dp"
+            android:fontFamily="sans-serif-medium"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            tools:text="Red"
+            tools:textColor="#ff0000" />
+
+    </TableRow>
+
+</TableLayout>

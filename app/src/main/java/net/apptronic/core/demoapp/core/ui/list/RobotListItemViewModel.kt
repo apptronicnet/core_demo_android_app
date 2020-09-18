@@ -1,10 +1,12 @@
 package net.apptronic.core.demoapp.core.ui.list
 
+import net.apptronic.core.commons.navigation.injectNavigationRouter
 import net.apptronic.core.component.context.Context
 import net.apptronic.core.component.context.Contextual
 import net.apptronic.core.component.context.viewModelContext
 import net.apptronic.core.component.value
 import net.apptronic.core.demoapp.core.data.Robot
+import net.apptronic.core.demoapp.core.ui.OpenRobotDetails
 import net.apptronic.core.mvvm.viewmodel.ViewModel
 import net.apptronic.core.mvvm.viewmodel.ViewModelContext
 import net.apptronic.core.mvvm.viewmodel.extensions.functionOf
@@ -42,6 +44,8 @@ fun Contextual.robotListItemViewModel() = RobotListItemViewModel(viewModelContex
  */
 class RobotListItemViewModel(context: ViewModelContext) : ViewModel(context) {
 
+    private val router = injectNavigationRouter()
+
     /**
      * Value or type [Robot] represented by this [RobotListItemViewModel]
      */
@@ -61,5 +65,8 @@ class RobotListItemViewModel(context: ViewModelContext) : ViewModel(context) {
         it.manufacturer
     }
 
+    fun onClick() {
+        router.sendCommands(OpenRobotDetails(robot.get()))
+    }
 
 }

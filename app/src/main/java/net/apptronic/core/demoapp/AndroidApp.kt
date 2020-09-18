@@ -3,6 +3,7 @@ package net.apptronic.core.demoapp
 import android.app.Application
 import net.apptronic.core.android.plugins.installAndroidApplicationPlugin
 import net.apptronic.core.demoapp.android.AppBinderFactory
+import net.apptronic.core.demoapp.android.AppTransitionAdapter
 import net.apptronic.core.demoapp.core.AppComponent
 import net.apptronic.core.demoapp.core.AppContext
 import net.apptronic.core.demoapp.core.ui.AppViewModel
@@ -25,6 +26,8 @@ class AndroidApp : Application() {
                 // action which will executed when system back button pressed
                 it.onBackPressed()
             }
+            // injects custom adapter for building transitions
+            viewTransitionFactory(AppTransitionAdapter)
         }
         // create instance of app core component to make application work
         appComponent = AppComponent()

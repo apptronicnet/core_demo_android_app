@@ -2,7 +2,6 @@ package net.apptronic.core.demoapp.core.data
 
 import net.apptronic.core.component.context.Context
 import net.apptronic.core.component.extensions.BaseComponent
-import net.apptronic.core.demoapp.core.ext.RemoteServerSimulator
 
 interface Api {
 

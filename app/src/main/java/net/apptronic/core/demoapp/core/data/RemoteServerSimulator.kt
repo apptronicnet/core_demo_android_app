@@ -1,12 +1,9 @@
-package net.apptronic.core.demoapp.core.ext
+package net.apptronic.core.demoapp.core.data
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
-import net.apptronic.core.demoapp.core.data.Robot
-import net.apptronic.core.demoapp.core.data.RobotColor
-import net.apptronic.core.demoapp.core.data.User
 import kotlin.random.Random
 
 object RemoteServerSimulator {

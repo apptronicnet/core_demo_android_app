@@ -34,14 +34,14 @@
 
     <Button
         android:id="@+id/btnGoToLogin"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:text="Go to Login demo page" />
 
     <Button
         android:id="@+id/btnCloseApp"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="Close app" />

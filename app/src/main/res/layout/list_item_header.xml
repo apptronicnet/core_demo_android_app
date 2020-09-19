@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/txtUser"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:fontFamily="sans-serif-medium"
-    android:text="DATA LIST"
-    android:textColor="#666"
+    android:text="Data list"
+    android:textAllCaps="true"
+    android:textColor="#727272"
     android:textSize="24sp" />

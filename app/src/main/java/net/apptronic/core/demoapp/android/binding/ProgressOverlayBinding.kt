@@ -44,12 +44,10 @@ private class ProgressOverlayBinding(
                 dialog = null
             }
         }
-    }
-
-    override fun onUnbind(action: () -> Unit) {
-        super.onUnbind(action)
-        dialog?.dismiss()
-        dialog = null
+        onUnbind {
+            dialog?.dismiss()
+            dialog = null
+        }
     }
 
 }

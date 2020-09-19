@@ -13,12 +13,16 @@ import net.apptronic.core.component.entity.subscribe
 import net.apptronic.core.demoapp.R
 import net.apptronic.core.mvvm.viewmodel.ViewModel
 
-fun BindingContainer.bindProgressDialog(context: Context, source: Entity<Boolean>) {
-    +ProgressOverlayBinding(source, context)
+fun BindingContainer.bindProgressDialog(
+    context: Context, source: Entity<Boolean>, onCancel: () -> Unit
+) {
+    +ProgressOverlayBinding(source, context, onCancel)
 }
 
 private class ProgressOverlayBinding(
-    private val source: Entity<Boolean>, private val context: Context
+    private val source: Entity<Boolean>,
+    private val context: Context,
+    private val onCancel: () -> Unit
 ) : Binding() {
 
     private var dialog: Dialog? = null
@@ -29,7 +33,10 @@ private class ProgressOverlayBinding(
                 dialog = Dialog(context).apply {
                     setContentView(R.layout.progress_dialog)
                     window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-                    setCancelable(false)
+                    setOnCancelListener {
+                        onCancel()
+                        dialog = null
+                    }
                     show()
                 }
             } else {

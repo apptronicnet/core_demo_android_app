@@ -9,5 +9,4 @@ import net.apptronic.core.demoapp.core.data.DataModule
  */
 val AppContext = coreContext {
     dependencyDispatcher.addModule(DataModule)
-    dependencyDispatcher.addModule(DemoModule)
 }

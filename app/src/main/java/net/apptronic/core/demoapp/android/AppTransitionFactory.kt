@@ -19,6 +19,6 @@ val ViewTransition_SwitchBottomSheet = viewTransition {
     }
 }
 
-val AppTransitionBuilder = viewTransitionFactory {
+val AppTransitionFactory = viewTransitionFactory {
     bindTransition(Transitions.ShowHideBottomSheet, ViewTransition_SwitchBottomSheet)
 }

@@ -16,7 +16,7 @@ object RemoteServerSimulator {
         return login == correctLogin && password == correctPassword
     }
 
-    private val usersCount = 10000
+    private val usersCount = 300
 
     private val firstNames = listOf(
         "Alex", "Bob", "Mary", "Jonh", "Jack", "Jim", "Jerry", "Anne", "Kate", "Bill"
@@ -43,7 +43,7 @@ object RemoteServerSimulator {
         }
     }
 
-    private val robotsCount = 10000
+    private val robotsCount = 300
 
     private val robotNamePrefixes = listOf(
         "Do", "Re", "Mi", "Fa", "Sol", "La", "Si"

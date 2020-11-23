@@ -3,7 +3,7 @@ package net.apptronic.core.demoapp.android
 import net.apptronic.core.android.viewmodel.ViewBinder
 import net.apptronic.core.android.viewmodel.ViewBinderFactory
 import net.apptronic.core.android.viewmodel.viewBinderFactory
-import net.apptronic.core.demoapp.android.binder.*
+import net.apptronic.core.demoapp.android.binder.AppViewBinder
 import net.apptronic.core.viewmodel.ViewModel
 
 /**
@@ -12,13 +12,9 @@ import net.apptronic.core.viewmodel.ViewModel
  */
 val AppBinderFactory = viewBinderFactory {
     add(::AppViewBinder)
-    add(::WelcomeViewBinder)
-    add(::LoginViewBinder)
-    add(::IncorrectCredentialsDialogBinder)
-    add(::DataListViewBinder)
-    add(::HeaderListItemViewBinder)
-    add(::RobotListItemViewBinder)
-    add(::UserListItemViewBinder)
-    add(::RobotDetailsViewBinder)
-    add(::UserDetailsViewBinder)
+//    add(::HeaderListItemViewBinder)
+//    add(::RobotListItemViewBinder)
+//    add(::UserListItemViewBinder)
+//    add(::RobotDetailsViewBinder)
+//    add(::UserDetailsViewBinder)
 }

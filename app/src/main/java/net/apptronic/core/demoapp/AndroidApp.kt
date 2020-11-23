@@ -22,10 +22,7 @@ class AndroidApp : Application() {
             // injects [ViewBinderFactory] automatically to all navigator bindings
             binderFactory(AppBinderFactory)
             // bind [Activity] class with it's [ViewModel]
-            bindActivity(MainActivity::class, AppViewModel::class) {
-                // action which will executed when system back button pressed
-                it.onBackPressed()
-            }
+            bindActivity(MainActivity::class, AppViewModel::class)
             // injects custom adapter for building transitions
             viewTransitionFactory(AppTransitionFactory)
         }

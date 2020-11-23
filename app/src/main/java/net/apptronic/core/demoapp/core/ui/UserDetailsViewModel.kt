@@ -1,12 +1,12 @@
 package net.apptronic.core.demoapp.core.ui
 
-import net.apptronic.core.component.context.Contextual
-import net.apptronic.core.component.context.viewModelContext
-import net.apptronic.core.component.entity.functions.map
-import net.apptronic.core.component.value
+import net.apptronic.core.context.Contextual
 import net.apptronic.core.demoapp.core.data.User
-import net.apptronic.core.mvvm.viewmodel.ViewModel
-import net.apptronic.core.mvvm.viewmodel.ViewModelContext
+import net.apptronic.core.entity.commons.value
+import net.apptronic.core.entity.function.map
+import net.apptronic.core.viewmodel.ViewModel
+import net.apptronic.core.viewmodel.ViewModelContext
+import net.apptronic.core.viewmodel.viewModelContext
 
 fun Contextual.userDetailsViewModel(user: User) = UserDetailsViewModel(viewModelContext(), user)
 

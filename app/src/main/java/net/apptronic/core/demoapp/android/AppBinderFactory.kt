@@ -4,7 +4,7 @@ import net.apptronic.core.android.viewmodel.ViewBinder
 import net.apptronic.core.android.viewmodel.ViewBinderFactory
 import net.apptronic.core.android.viewmodel.viewBinderFactory
 import net.apptronic.core.demoapp.android.binder.*
-import net.apptronic.core.mvvm.viewmodel.ViewModel
+import net.apptronic.core.viewmodel.ViewModel
 
 /**
  * This [ViewBinderFactory] contains all bindings between [ViewModel] and [ViewBinder] for whole app.

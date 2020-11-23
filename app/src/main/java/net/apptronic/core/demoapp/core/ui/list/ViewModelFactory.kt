@@ -1,9 +1,9 @@
 package net.apptronic.core.demoapp.core.ui.list
 
-import net.apptronic.core.mvvm.viewmodel.navigation.DynamicListNavigator
-import net.apptronic.core.mvvm.viewmodel.navigation.ViewModelBuilder
-import net.apptronic.core.mvvm.viewmodel.navigation.ViewModelFactory
-import net.apptronic.core.mvvm.viewmodel.navigation.plus
+import net.apptronic.core.viewmodel.navigation.DynamicListNavigator
+import net.apptronic.core.viewmodel.navigation.ViewModelBuilder
+import net.apptronic.core.viewmodel.navigation.ViewModelFactory
+import net.apptronic.core.viewmodel.navigation.plus
 
 /**
  * When needed to use several item types inside of [DynamicListNavigator] there is possibility to create

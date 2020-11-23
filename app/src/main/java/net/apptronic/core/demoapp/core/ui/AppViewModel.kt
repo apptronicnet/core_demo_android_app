@@ -1,15 +1,14 @@
 package net.apptronic.core.demoapp.core.ui
 
-import net.apptronic.core.commons.navigation.DefaultNavigationHandler
-import net.apptronic.core.commons.navigation.hostNavigationRouter
-import net.apptronic.core.commons.navigation.registerNavigationHandler
-import net.apptronic.core.component.Component
-import net.apptronic.core.component.context.Contextual
-import net.apptronic.core.component.context.viewModelContext
-import net.apptronic.core.mvvm.viewmodel.ViewModel
-import net.apptronic.core.mvvm.viewmodel.ViewModelContext
-import net.apptronic.core.mvvm.viewmodel.adapter.BasicTransition
-import net.apptronic.core.mvvm.viewmodel.navigation.stackNavigator
+import net.apptronic.core.commons.routing.DefaultNavigationHandler
+import net.apptronic.core.commons.routing.hostNavigationRouter
+import net.apptronic.core.commons.routing.registerNavigationHandler
+import net.apptronic.core.context.Contextual
+import net.apptronic.core.viewmodel.ViewModel
+import net.apptronic.core.viewmodel.ViewModelContext
+import net.apptronic.core.viewmodel.navigation.BasicTransition
+import net.apptronic.core.viewmodel.navigation.stackNavigator
+import net.apptronic.core.viewmodel.viewModelContext
 
 /**
  * Default builder for [AppViewModel] which can be called from any [Contextual] - other [ViewModel],

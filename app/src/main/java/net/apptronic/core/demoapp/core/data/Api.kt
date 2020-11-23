@@ -1,7 +1,7 @@
 package net.apptronic.core.demoapp.core.data
 
-import net.apptronic.core.component.context.Context
-import net.apptronic.core.component.extensions.BaseComponent
+import net.apptronic.core.context.Context
+import net.apptronic.core.context.component.Component
 
 interface Api {
 
@@ -13,7 +13,7 @@ interface Api {
 
 }
 
-class DemoApiComponent(context: Context) : BaseComponent(context), Api {
+class DemoApiComponent(context: Context) : Component(context), Api {
 
     override suspend fun login(login: String, password: String): Boolean {
         return RemoteServerSimulator.login(login, password)

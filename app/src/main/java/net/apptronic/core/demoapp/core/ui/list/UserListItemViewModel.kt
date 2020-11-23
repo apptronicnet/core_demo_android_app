@@ -1,17 +1,16 @@
 package net.apptronic.core.demoapp.core.ui.list
 
-import net.apptronic.core.commons.navigation.injectNavigationRouter
-import net.apptronic.core.component.context.Context
-import net.apptronic.core.component.context.Contextual
-import net.apptronic.core.component.context.viewModelContext
-import net.apptronic.core.component.value
+import net.apptronic.core.commons.routing.injectNavigationRouter
+import net.apptronic.core.context.Context
+import net.apptronic.core.context.Contextual
 import net.apptronic.core.demoapp.core.data.User
 import net.apptronic.core.demoapp.core.ui.OpenUserDetails
-import net.apptronic.core.mvvm.viewmodel.ViewModel
-import net.apptronic.core.mvvm.viewmodel.ViewModelContext
-import net.apptronic.core.mvvm.viewmodel.extensions.functionOf
-import net.apptronic.core.mvvm.viewmodel.navigation.DynamicListNavigator
-import net.apptronic.core.mvvm.viewmodel.navigation.ViewModelBuilder
+import net.apptronic.core.entity.commons.value
+import net.apptronic.core.entity.function.functionOf
+import net.apptronic.core.viewmodel.ViewModel
+import net.apptronic.core.viewmodel.ViewModelContext
+import net.apptronic.core.viewmodel.navigation.ViewModelBuilder
+import net.apptronic.core.viewmodel.viewModelContext
 
 /**
  * To use [ViewModel] in large lists it needed to create implementation of [ViewModelBuilder] which generates
@@ -59,7 +58,7 @@ class UserListItemViewModel(context: ViewModelContext) : ViewModel(context) {
     }
 
     fun onClick() {
-        router.sendCommands(OpenUserDetails(user.get()))
+        router.sendCommandsAsync(OpenUserDetails(user.get()))
     }
 
 }

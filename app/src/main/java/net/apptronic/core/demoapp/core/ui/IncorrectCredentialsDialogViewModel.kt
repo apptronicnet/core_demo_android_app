@@ -1,10 +1,10 @@
 package net.apptronic.core.demoapp.core.ui
 
-import net.apptronic.core.component.context.Contextual
-import net.apptronic.core.component.context.viewModelContext
-import net.apptronic.core.component.property
-import net.apptronic.core.mvvm.viewmodel.ViewModel
-import net.apptronic.core.mvvm.viewmodel.ViewModelContext
+import net.apptronic.core.context.Contextual
+import net.apptronic.core.entity.commons.property
+import net.apptronic.core.viewmodel.ViewModel
+import net.apptronic.core.viewmodel.ViewModelContext
+import net.apptronic.core.viewmodel.viewModelContext
 
 fun Contextual.incorrectCredentialsDialogViewModel(login: String) =
     IncorrectCredentialsDialogViewModel(viewModelContext(), login)

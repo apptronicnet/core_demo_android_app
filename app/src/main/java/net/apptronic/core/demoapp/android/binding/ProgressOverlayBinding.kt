@@ -7,11 +7,10 @@ import android.graphics.drawable.ColorDrawable
 import net.apptronic.core.android.viewmodel.Binding
 import net.apptronic.core.android.viewmodel.BindingContainer
 import net.apptronic.core.android.viewmodel.ViewBinder
-import net.apptronic.core.component.entity.Entity
-import net.apptronic.core.component.entity.entities.distinctUntilChanged
-import net.apptronic.core.component.entity.subscribe
 import net.apptronic.core.demoapp.R
-import net.apptronic.core.mvvm.viewmodel.ViewModel
+import net.apptronic.core.entity.Entity
+import net.apptronic.core.entity.commons.distinctUntilChanged
+import net.apptronic.core.viewmodel.IViewModel
 
 fun BindingContainer.bindProgressDialog(
     context: Context, source: Entity<Boolean>, onCancel: () -> Unit
@@ -27,7 +26,7 @@ private class ProgressOverlayBinding(
 
     private var dialog: Dialog? = null
 
-    override fun onBind(viewModel: ViewModel, viewBinder: ViewBinder<*>) {
+    override fun onBind(viewModel: IViewModel, viewBinder: ViewBinder<*>) {
         source.distinctUntilChanged().subscribe {
             if (it) {
                 dialog = Dialog(context).apply {

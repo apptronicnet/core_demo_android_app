@@ -1,12 +1,12 @@
 package net.apptronic.core.demoapp.android.binder
 
-import android.view.View
 import kotlinx.android.synthetic.main.login.view.*
 import net.apptronic.core.android.viewmodel.ViewBinder
 import net.apptronic.core.android.viewmodel.bindings.bindClickListener
 import net.apptronic.core.android.viewmodel.bindings.bindEnabledDisabled
 import net.apptronic.core.android.viewmodel.bindings.bindTextInput
-import net.apptronic.core.android.viewmodel.bindings.navigation.bindDialogNavigator
+import net.apptronic.core.android.viewmodel.bindings.navigation.DialogMode
+import net.apptronic.core.android.viewmodel.bindings.navigation.bindNavigator
 import net.apptronic.core.demoapp.R
 import net.apptronic.core.demoapp.android.binding.bindHideSoftInput
 import net.apptronic.core.demoapp.android.binding.bindProgressDialog
@@ -16,9 +16,9 @@ class LoginViewBinder : ViewBinder<LoginViewModel>() {
 
     override var layoutResId: Int? = R.layout.login
 
-    override fun onBindView(view: View, viewModel: LoginViewModel) {
+    override fun onBindView() {
         with(view) {
-            bindDialogNavigator(viewModel.dialogNavigator)
+            bindNavigator(viewModel.dialogNavigator, DialogMode())
             bindTextInput(edtLogin, viewModel.login)
             bindTextInput(edtPassword, viewModel.password)
             bindClickListener(btnLogin, viewModel::onLoginClick)

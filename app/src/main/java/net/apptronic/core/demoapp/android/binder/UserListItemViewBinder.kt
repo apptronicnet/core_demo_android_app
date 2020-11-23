@@ -1,6 +1,5 @@
 package net.apptronic.core.demoapp.android.binder
 
-import android.view.View
 import kotlinx.android.synthetic.main.list_item_user.view.*
 import net.apptronic.core.android.viewmodel.ViewBinder
 import net.apptronic.core.android.viewmodel.bindings.bindClickListener
@@ -12,7 +11,7 @@ class UserListItemViewBinder : ViewBinder<UserListItemViewModel>() {
 
     override var layoutResId: Int? = R.layout.list_item_user
 
-    override fun onBindView(view: View, viewModel: UserListItemViewModel) {
+    override fun onBindView() {
         with(view) {
             bindText(txtUser, viewModel.text)
             bindClickListener(view, viewModel::onClick)

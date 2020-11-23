@@ -2,21 +2,20 @@ package net.apptronic.core.demoapp.core.ui
 
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
-import net.apptronic.core.commons.navigation.injectNavigationRouter
-import net.apptronic.core.component.context.Contextual
-import net.apptronic.core.component.context.viewModelContext
-import net.apptronic.core.component.coroutines.contextCoroutineScope
-import net.apptronic.core.component.entity.functions.and
-import net.apptronic.core.component.entity.functions.isNotEmpty
-import net.apptronic.core.component.genericEvent
-import net.apptronic.core.component.inject
-import net.apptronic.core.component.property
-import net.apptronic.core.component.value
+import net.apptronic.core.commons.routing.injectNavigationRouter
+import net.apptronic.core.context.Contextual
+import net.apptronic.core.context.coroutines.contextCoroutineScope
 import net.apptronic.core.demoapp.core.data.Api
-import net.apptronic.core.mvvm.common.textInput
-import net.apptronic.core.mvvm.viewmodel.ViewModel
-import net.apptronic.core.mvvm.viewmodel.ViewModelContext
-import net.apptronic.core.mvvm.viewmodel.navigation.stackNavigator
+import net.apptronic.core.entity.commons.genericEvent
+import net.apptronic.core.entity.commons.property
+import net.apptronic.core.entity.commons.value
+import net.apptronic.core.entity.function.and
+import net.apptronic.core.entity.function.isNotEmpty
+import net.apptronic.core.viewmodel.ViewModel
+import net.apptronic.core.viewmodel.ViewModelContext
+import net.apptronic.core.viewmodel.commons.textInput
+import net.apptronic.core.viewmodel.navigation.stackNavigator
+import net.apptronic.core.viewmodel.viewModelContext
 
 fun Contextual.loginViewModel() = LoginViewModel(viewModelContext())
 
@@ -35,7 +34,7 @@ class LoginViewModel(context: ViewModelContext) : ViewModel(context) {
     val login = textInput("")
     val password = textInput("")
 
-    val isLoginButtonEnabled = property(login.text().isNotEmpty() and password.text().isNotEmpty())
+    val isLoginButtonEnabled = property(login.isNotEmpty() and password.isNotEmpty())
     val isInProgress = value(false)
     val requestHideSoftKeyboardEvent = genericEvent()
 
@@ -47,16 +46,16 @@ class LoginViewModel(context: ViewModelContext) : ViewModel(context) {
     }
 
     fun onLoginClick() {
-        requestHideSoftKeyboardEvent.sendEvent()
+        requestHideSoftKeyboardEvent.update()
         loginJob = contextCoroutineScope.launch {
             try {
                 isInProgress.set(true)
-                val isSuccess = api.login(login.getText(), password.getText())
+                val isSuccess = api.login(login.get(), password.get())
                 if (isSuccess) {
                     router.sendCommandsAsync(OpenDataList())
                 } else {
                     dialogNavigator.add(
-                        incorrectCredentialsDialogViewModel(login.getText())
+                        incorrectCredentialsDialogViewModel(login.get())
                     )
                 }
             } finally {

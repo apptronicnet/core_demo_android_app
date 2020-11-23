@@ -2,20 +2,17 @@ package net.apptronic.core.demoapp.core.ui
 
 import kotlinx.coroutines.launch
 import net.apptronic.core.base.collections.wrapLists
-import net.apptronic.core.component.context.Contextual
-import net.apptronic.core.component.context.viewModelContext
-import net.apptronic.core.component.coroutines.contextCoroutineScope
-import net.apptronic.core.component.inject
-import net.apptronic.core.component.value
+import net.apptronic.core.context.Contextual
+import net.apptronic.core.context.coroutines.contextCoroutineScope
 import net.apptronic.core.demoapp.core.data.DataRepository
 import net.apptronic.core.demoapp.core.ui.list.HeaderListItem
 import net.apptronic.core.demoapp.core.ui.list.ViewModelFactory
-import net.apptronic.core.mvvm.viewmodel.ViewModel
-import net.apptronic.core.mvvm.viewmodel.ViewModelContext
-import net.apptronic.core.mvvm.viewmodel.navigation.DynamicListNavigator
-import net.apptronic.core.mvvm.viewmodel.navigation.HasBackNavigation
-import net.apptronic.core.mvvm.viewmodel.navigation.ListNavigator
-import net.apptronic.core.mvvm.viewmodel.navigation.listDynamicNavigator
+import net.apptronic.core.entity.commons.value
+import net.apptronic.core.viewmodel.ViewModel
+import net.apptronic.core.viewmodel.ViewModelContext
+import net.apptronic.core.viewmodel.navigation.HasBackNavigation
+import net.apptronic.core.viewmodel.navigation.listDynamicNavigator
+import net.apptronic.core.viewmodel.viewModelContext
 
 fun Contextual.dataListViewModel() = DataListViewModel(viewModelContext())
 

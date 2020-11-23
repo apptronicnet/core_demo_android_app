@@ -4,9 +4,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
-import net.apptronic.core.component.context.Context
-import net.apptronic.core.component.extensions.BaseComponent
-import net.apptronic.core.component.inject
+import net.apptronic.core.context.Context
+import net.apptronic.core.context.component.Component
 import kotlin.math.min
 
 interface DataRepository {
@@ -15,7 +14,7 @@ interface DataRepository {
 
 }
 
-class DataRepositoryComponent(context: Context) : BaseComponent(context), DataRepository {
+class DataRepositoryComponent(context: Context) : Component(context), DataRepository {
 
     private val api = inject<Api>()
 

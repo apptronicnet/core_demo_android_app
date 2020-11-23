@@ -1,11 +1,10 @@
 package net.apptronic.core.demoapp.core.ui.list
 
-import net.apptronic.core.component.context.Contextual
-import net.apptronic.core.component.context.viewModelContext
-import net.apptronic.core.mvvm.viewmodel.ViewModel
-import net.apptronic.core.mvvm.viewmodel.ViewModelContext
-import net.apptronic.core.mvvm.viewmodel.navigation.ViewModelBuilder
-import net.apptronic.core.mvvm.viewmodel.navigation.singleItemViewModelBuilder
+import net.apptronic.core.context.Contextual
+import net.apptronic.core.viewmodel.ViewModel
+import net.apptronic.core.viewmodel.ViewModelContext
+import net.apptronic.core.viewmodel.navigation.singleItemViewModelBuilder
+import net.apptronic.core.viewmodel.viewModelContext
 
 /**
  * This is simple definition of list item which represents list header

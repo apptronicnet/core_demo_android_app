@@ -1,6 +1,6 @@
 package net.apptronic.core.demoapp.core.data
 
-import net.apptronic.core.component.di.declareModule
+import net.apptronic.core.context.di.declareModule
 
 val DataModule = declareModule {
     single<Api> {
